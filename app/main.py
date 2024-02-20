@@ -4,6 +4,10 @@ from datetime import date
 
 from inputs import Title
 
+about = """
+# Docs generator
+This is a simple API documentation generator. It takes a title, author, and date as input and generates a PDF document with the given information.
+"""
 
 st.set_page_config(
     page_title="API Documentation generator",
@@ -12,11 +16,13 @@ st.set_page_config(
     menu_items={
         'Get Help': 'https://www.extremelycoolapp.com/help',
         'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
+        'About': about
     }
 )
 
 st.title(":green[API] Documentation generator 📚")
+
+st.header("Title")
 
 main_title = st.text_input("Title", "API Documentation")
 author = st.text_input("Author")
