@@ -1,6 +1,5 @@
 from pydantic import BaseModel, field_validator
-from pylatex.utils import NoEscape
-from datetime import date, datetime
+from datetime import datetime
 import streamlit as st
 
 class Title(BaseModel):
@@ -19,5 +18,6 @@ class Title(BaseModel):
         try:
             datetime.strptime(v, "%Y-%m-%d")
         except ValueError:
+            st.warning("Incorrect data format, should be YYYY-MM-DD")
             raise ValueError("Incorrect data format, should be YYYY-MM-DD")
         return v

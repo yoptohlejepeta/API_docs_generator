@@ -1,5 +1,5 @@
 import streamlit as st
-from latex import fill_document
+from doc_gen import fill_document
 from datetime import date
 
 from inputs import Title
@@ -11,7 +11,7 @@ This is a simple API documentation generator. It takes a title, author, and date
 
 st.set_page_config(
     page_title="API Documentation generator",
-    page_icon="📚",
+    page_icon="📜",
     layout="centered",
     menu_items={
         'Get Help': 'https://www.extremelycoolapp.com/help',
@@ -31,7 +31,7 @@ date = st.date_input("Date")
 title = Title(title=main_title, author=author, date=str(date))
 
 if st.button("Generate", type="primary"):
-    fill_document(title=title)
+    fill_document(title)
     data = open('output/docs.pdf', 'rb').read()
 
     st.download_button(
