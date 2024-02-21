@@ -1,6 +1,7 @@
 [theme]
 base="dark"
 primaryColor="#3dd56d"
+font="monospace"
 
 [client]
 toolbarMode="minimal"

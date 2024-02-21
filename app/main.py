@@ -3,24 +3,24 @@ from doc_gen import fill_document
 from datetime import date
 
 from inputs import Title
+from utils import read_markdown_file
 
-about = """
-# Docs generator
-This is a simple API documentation generator. It takes a title, author, and date as input and generates a PDF document with the given information.
-"""
+about = read_markdown_file("README.md")
+center_title = "<style>h1{text-align: center; font-size: 50px;}</style>"
 
 st.set_page_config(
     page_title="API Documentation generator",
     page_icon="📜",
     layout="centered",
     menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': about
-    }
+        "Get Help": "https://www.extremelycoolapp.com/help",
+        "Report a bug": "https://www.extremelycoolapp.com/bug",
+        "About": about,
+    },
 )
+st.markdown(center_title, unsafe_allow_html=True)
 
-st.title(":green[API] Documentation generator 📚")
+st.title("<:green[API]/> DocGen", anchor=False)
 
 st.header("Title")
 
@@ -32,11 +32,11 @@ title = Title(title=main_title, author=author, date=str(date))
 
 if st.button("Generate", type="primary"):
     fill_document(title)
-    data = open('output/docs.pdf', 'rb').read()
+    data = open("output/docs.pdf", "rb").read()
 
     st.download_button(
         label="Download PDF",
         data=data,
-        file_name='docs.pdf',
-        mime='application/pdf',
+        file_name="docs.pdf",
+        mime="application/pdf",
     )
